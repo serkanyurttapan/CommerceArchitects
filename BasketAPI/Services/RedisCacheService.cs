@@ -5,15 +5,15 @@ namespace BasketAPI.Services
     public class RedisCacheService : IRedisCacheService
     {
 
-        private RedisService _redisService;
-        public RedisCacheService(RedisService redisService)
+        //private RedisService _redisService;
+        public RedisCacheService()
         {
-            _redisService = redisService;
+            //_redisService = redisService;
         }
         public void Add(string key, object data)
         {
-            string jsonData = JsonConvert.SerializeObject(data);
-            _redisService.GetDB().StringSet(key, jsonData);
+            //string jsonData = JsonConvert.SerializeObject(data);
+            //_redisService.GetDb(2).StringSet(key, jsonData);
         }
 
         public bool Any(string key)

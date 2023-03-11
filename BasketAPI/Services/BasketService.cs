@@ -1,10 +1,8 @@
-﻿using Azure;
-using BasketAPI.Dtos;
-using Microsoft.AspNetCore.DataProtection.KeyManagement;
+﻿using BasketAPI.Dtos;
+using Newtonsoft.Json;
 using Shared.Dtos;
 using StackExchange.Redis;
 using System.Net;
-using System.Text.Json;
 
 namespace BasketAPI.Services
 {
@@ -34,13 +32,13 @@ namespace BasketAPI.Services
             {
                 return ResponseDto<BasketDto>.Fail("basket not found", (int)HttpStatusCode.NotFound);
             }
-            return ResponseDto<BasketDto>.Success(JsonSerializer.Deserialize<BasketDto>(existBasket),
+            return ResponseDto<BasketDto>.Success(JsonConvert.DeserializeObject<BasketDto>(existBasket),
                                                   (int)HttpStatusCode.OK);
         }
 
         public async Task<ResponseDto<bool>> SaveOrUpdate(BasketDto basketDto)
         {
-            bool status = await _redisService.GetDB().StringSetAsync(basketDto.UserDto.UserId, "RES");
+            bool status = await _redisService.GetDB().StringSetAsync(basketDto.UserDto.UserId,JsonConvert.SerializeObject(basketDto));
             if (status)
 
             {

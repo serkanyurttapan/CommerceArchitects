@@ -19,7 +19,7 @@ builder.Services.AddSingleton(rd =>
 {
     var redisSettings = rd.GetRequiredService<IOptions<RedisConnectSettings>>().Value;
     var redis = new RedisService(redisSettings.Host, redisSettings.Port);
-    redis.GetDB();
+    redis.Connect();
     return redis;
 
 });
