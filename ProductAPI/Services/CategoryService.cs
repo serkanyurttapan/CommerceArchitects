@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using Azure;
 using MongoDB.Driver;
 using ProductAPI.Dtos;
 using ProductAPI.Models;
-using ProductAPI.Settings;
+using Shared.Settings;
 using Shared.Dtos;
 using System.Net;
 

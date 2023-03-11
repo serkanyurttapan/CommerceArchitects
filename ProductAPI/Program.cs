@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.Extensions.Options;
 using ProductAPI.Mapping;
 using ProductAPI.Services;
-using ProductAPI.Settings;
+using Shared.Settings;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,4 +1,4 @@
-﻿namespace ProductAPI.Settings
+﻿namespace Shared.Settings
 {
     public interface IDatabaseSettings
     {
