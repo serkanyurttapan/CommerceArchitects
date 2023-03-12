@@ -1,15 +1,12 @@
 using AutoMapper;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.Extensions.Options;
 using ProductAPI.Mapping;
 using ProductAPI.Services;
 using Shared.Settings;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.WebHost.UseUrls("https://localhost:7002/");
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

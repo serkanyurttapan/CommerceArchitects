@@ -1,16 +1,19 @@
-﻿namespace OrderDomainCore
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace OrderDomainCore
 {
     public abstract class Entity
     {
-
         //Domain Driven Design, gerçek dünyadaki iş modellerini herkesin anlayabileceği ortak bir dil(Ubiquitous Language) ile oluşturarak dijital dünyaya uyarlamak için yazılımların nasıl modellenmesi gerektiği konusunda bir felsefeyi savunur.
-
-
         //DDD’da önemli bir kavram olan Entity, kendini diğer nesnelere nazaran tekilleştirebilmek için bir kimliğe(Id) sahip olan nesnelerdir.
         private int? _requestedHashCode;
-        private int _Id;
 
-        public virtual int Id
+        private string _Id;
+
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public virtual string Id
         {
             get => _Id;
             set => _Id = value;
@@ -18,7 +21,7 @@
 
         public bool IsTransient()
         {
-            return this.Id == default(Int32);
+            return this.Id == default(string);
         }
 
         public override int GetHashCode()

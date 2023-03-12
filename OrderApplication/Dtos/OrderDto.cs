@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +10,6 @@ namespace OrderApplication.Dtos
 {
     public class OrderDto
     {
-        public int Id { get; set; }
         public AddressDto Address { get; set; }
         public DateTime CreatedDate { get; set; }
         public string BuyerId { get; set; }

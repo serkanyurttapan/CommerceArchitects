@@ -1,4 +1,6 @@
-﻿using OrderDomainCore;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using OrderDomainCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +11,11 @@ namespace OrderApplication.OrderAggregate
 {
     public class Order : Entity, IAggregateRoot
     {
-        public Address Address { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public Address Address { get; private set; }
+        public DateTime CreatedDate { get; private set; }
         public string BuyerId { get; set; }
         private readonly List<OrderItem> _orderItems;
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems;
-
         public Order()
         {
         }

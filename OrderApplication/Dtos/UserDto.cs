@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace OrderApplication.Dtos
 {
-    public class CreatedOrderDto
+    public class UserDto
     {
-        public string OrderId { get; set; }
+        public string UserId { get; set; }
     }
 }

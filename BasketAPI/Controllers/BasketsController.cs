@@ -8,10 +8,10 @@ namespace BasketAPI.Controllers
 {
     [Route("api/controller")]
     [ApiController]
-    public class BasketController : CustomBaseController
+    public class BasketsController : CustomBaseController
     {
         private readonly IBasketService _basketService;
-        public BasketController(IBasketService basketService)
+        public BasketsController(IBasketService basketService)
         {
             _basketService = basketService;
         }

@@ -40,7 +40,6 @@ namespace BasketAPI.Services
         {
             bool status = await _redisService.GetDB().StringSetAsync(basketDto.UserDto.UserId,JsonConvert.SerializeObject(basketDto));
             if (status)
-
             {
                 return ResponseDto<bool>.Success((int)HttpStatusCode.NoContent);
             }

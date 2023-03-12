@@ -1,6 +1,15 @@
+using Diamond.Application;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
+using OrderApplication.Commands;
+using OrderApplication.Handlers;
 using OrderInfrastructure;
+using Shared.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.WebHost.UseUrls("https://localhost:7001/");
 
 // Add services to the container.
 
@@ -9,14 +18,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<OrderDbContext>(opt =>
-{
-    //opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), conf =>
-    //{
-    //    conf.MigrationsAssembly("OrderInfrastructure");
-    //});
-});
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
+builder.Services.AddSingleton<IDatabaseSettings>(sp =>
+{ return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value; });
 
+builder.Services.AddScoped<IOrderDbContext, OrderDbContext>();
+
+builder.Services.RegisterRequestHandlers();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -14,7 +14,7 @@ namespace OrderApplication.Mapping
         public CustomMapping()
         {
             CreateMap<Order, OrderDto>().ReverseMap();
-            CreateMap<OrderItemDto, OrderItem>().ReverseMap();
+            CreateMap<OrderItem, OrderItemDto>().ReverseMap();
             CreateMap<Address, AddressDto>().ReverseMap();
         }
     }
